@@ -29,7 +29,7 @@ after_success:
   - docker buildx create --name sofia
   - docker buildx use sofia
   - docker buildx inspect --bootstrap
-  - docker buildx build --platform linux/arm/v7 -t logistics . --load
+  - docker buildx build --platform linux/arm/v7 -t production . --load
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh success $WEBHOOK_URL
@@ -44,11 +44,11 @@ before_deploy:
   - docker images
   - docker buildx version
   - docker login -u "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD" docker.io ;
-  - docker tag logistics $DOCKER_USERNAME/logistics:latest
+  - docker tag production $DOCKER_USERNAME/production:latest
 
 deploy:
   provider: script
-  script: docker push $DOCKER_USERNAME/logistics:latest ;
+  script: docker push $DOCKER_USERNAME/production:latest ;
 
 notifications:
   email: false
