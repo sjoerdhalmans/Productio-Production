@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class ProductionApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
 	@Test
 	void testThis() {
 		assertEquals(2, 2);
