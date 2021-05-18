@@ -1,7 +1,7 @@
 package com.productio.production.controllers;
 
-import com.productio.production.logic.ProductionItemLogic;
-import com.productio.production.models.ProductionItem;
+import com.productio.production.logic.ItemLogic;
+import com.productio.production.models.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +14,11 @@ import java.util.List;
 @RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ItemController {
     @Autowired
-    ProductionItemLogic productionItemLogic;
+    ItemLogic itemLogic;
 
     //these are added straight in the database
     @GetMapping(value = "/getAllItems")
-    public List<ProductionItem> getAll() {
-        return productionItemLogic.getAll();
+    public List<Item> getAll() {
+        return itemLogic.getAll();
     }
 }

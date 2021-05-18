@@ -11,7 +11,7 @@
 	<groupId>com.productio</groupId>
 	<artifactId>production</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>logistics</name>
+	<name>production</name>
 	<description>productio production service</description>
 	<properties>
 		<java.version>1.8</java.version>

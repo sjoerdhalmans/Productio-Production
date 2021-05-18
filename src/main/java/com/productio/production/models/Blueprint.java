@@ -4,22 +4,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "productionblueprints")
 @EntityListeners(AuditingEntityListener.class)
-public class ProductionBlueprint {
+public class Blueprint {
 
-    public ProductionBlueprint(long id, ProductionItem item, @NotBlank long materialId, @NotBlank long quantity) {
+    public Blueprint(long id, Item item, @NotBlank long materialId, @NotBlank long quantity) {
         this.id = id;
         this.item = item;
         this.materialId = materialId;
         this.quantity = quantity;
     }
 
-    public ProductionBlueprint() {
+    public Blueprint(Item item, @NotBlank long materialId, @NotBlank long quantity) {
+        this.item = item;
+        this.materialId = materialId;
+        this.quantity = quantity;
+    }
+
+    public Blueprint() {
 
     }
 
@@ -31,7 +36,7 @@ public class ProductionBlueprint {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-    private ProductionItem item;
+    private Item item;
 
     @NotBlank
     private long materialId;
@@ -51,11 +56,11 @@ public class ProductionBlueprint {
         return id;
     }
 
-    public ProductionItem getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(ProductionItem item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 

@@ -11,9 +11,9 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "productionitems")
 @EntityListeners(AuditingEntityListener.class)
-public class ProductionItem {
+public class Item {
 
-    public ProductionItem(long id, List<ProductionBlueprint> requiredMaterials, @NotBlank long price, @NotBlank String name, @NotBlank String shortDescription, @NotBlank String currency) {
+    public Item(long id, List<Blueprint> requiredMaterials, @NotBlank long price, @NotBlank String name, @NotBlank String shortDescription, @NotBlank String currency) {
         this.id = id;
         this.requiredMaterials = requiredMaterials;
         this.price = price;
@@ -22,7 +22,14 @@ public class ProductionItem {
         this.currency = currency;
     }
 
-    public ProductionItem() {
+    public Item(@NotBlank long price, @NotBlank String name, @NotBlank String shortDescription, @NotBlank String currency) {
+        this.price = price;
+        this.name = name;
+        this.shortDescription = shortDescription;
+        this.currency = currency;
+    }
+
+    public Item() {
 
     }
 
@@ -33,7 +40,7 @@ public class ProductionItem {
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ProductionBlueprint> requiredMaterials;
+    private List<Blueprint> requiredMaterials;
 
     @NotBlank
     private long price;
@@ -75,11 +82,11 @@ public class ProductionItem {
         return id;
     }
 
-    public List<ProductionBlueprint> getRequiredMaterials() {
+    public List<Blueprint> getRequiredMaterials() {
         return requiredMaterials;
     }
 
-    public void setRequiredMaterials(List<ProductionBlueprint> requiredMaterials) {
+    public void setRequiredMaterials(List<Blueprint> requiredMaterials) {
         this.requiredMaterials = requiredMaterials;
     }
 
