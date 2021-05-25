@@ -2,8 +2,8 @@ package com.productio.production.models;
 
 public class ProductionLineDTO {
 
-    public ProductionLineDTO(long producedItemId, long quantityPerMinute) {
-        this.producedItemId = producedItemId;
+    public ProductionLineDTO(Item producedItem, long quantityPerMinute) {
+        this.producedItem = producedItem;
         this.quantityPerMinute = quantityPerMinute;
     }
 
@@ -11,16 +11,16 @@ public class ProductionLineDTO {
 
     }
 
-    private long producedItemId;
+    private Item producedItem;
 
     private long quantityPerMinute;
 
-    public long getProducedItemId() {
-        return producedItemId;
+    public Item getProducedItemId() {
+        return producedItem;
     }
 
-    public void setProducedItemId(long producedItemId) {
-        this.producedItemId = producedItemId;
+    public void setProducedItemId(Item producedItem) {
+        this.producedItem = producedItem;
     }
 
     public long getQuantityPerMinute() {

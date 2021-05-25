@@ -1,5 +1,6 @@
 package com.productio.production.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -41,6 +42,11 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Blueprint> requiredMaterials;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Blueprint> productionLines;
 
     @NotBlank
     private long price;

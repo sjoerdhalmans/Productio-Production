@@ -1,5 +1,6 @@
 package com.productio.production.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -11,16 +12,16 @@ import javax.validation.constraints.NotBlank;
 @EntityListeners(AuditingEntityListener.class)
 public class ProductionLine {
 
-    public ProductionLine(long id, @NotBlank boolean active, @NotBlank long producedItemId, @NotBlank long quantityPerMinute) {
+    public ProductionLine(long id, @NotBlank boolean active, @NotBlank Item producedItem, @NotBlank long quantityPerMinute) {
         this.id = id;
         this.active = active;
-        this.producedItemId = producedItemId;
+        this.producedItem = producedItem;
         this.quantityPerMinute = quantityPerMinute;
     }
 
-    public ProductionLine(@NotBlank boolean active, @NotBlank long producedItemId, @NotBlank long quantityPerMinute) {
+    public ProductionLine(@NotBlank boolean active, @NotBlank Item producedItem, @NotBlank long quantityPerMinute) {
         this.active = active;
-        this.producedItemId = producedItemId;
+        this.producedItem = producedItem;
         this.quantityPerMinute = quantityPerMinute;
     }
 
@@ -33,11 +34,12 @@ public class ProductionLine {
     @Column(name = "id", unique = true, updatable = false)
     private long id;
 
-    @NotBlank
-    private boolean active;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produced_Item")
+    private Item producedItem;
 
     @NotBlank
-    private long producedItemId;
+    private boolean active;
 
     @NotBlank
     private long quantityPerMinute;
@@ -54,12 +56,12 @@ public class ProductionLine {
         return id;
     }
 
-    public long getProducedItemId() {
-        return producedItemId;
+    public Item getProducedItem() {
+        return producedItem;
     }
 
-    public void setProducedItemId(long producedItemId) {
-        this.producedItemId = producedItemId;
+    public void setProducedItem(Item producedItem) {
+        this.producedItem = producedItem;
     }
 
     public long getQuantityPerMinute() {
