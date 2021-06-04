@@ -43,7 +43,7 @@ public class RedisReceiver {
     public void updateProductionLine(String body) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ProductionLine productionLine = objectMapper.readValue(body, ProductionLine.class);
-
+        
         productionLineLogic.updateProductionLine(productionLine);
     }
 

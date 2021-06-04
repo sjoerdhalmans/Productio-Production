@@ -18,7 +18,7 @@ public class ProductionLineLogic {
     }
 
     public void createProductionLine(ProductionLineDTO productionLineDTO) {
-        ProductionLine productionLine = new ProductionLine(false, productionLineDTO.getProducedItemId(), productionLineDTO.getQuantityPerMinute());
+        ProductionLine productionLine = new ProductionLine(false, productionLineDTO.getProducedItem(), productionLineDTO.getQuantityPerMinute());
 
         productionLineRepo.save(productionLine);
     }

@@ -15,11 +15,11 @@ public class ProductionLineDTO {
 
     private long quantityPerMinute;
 
-    public Item getProducedItemId() {
+    public Item getProducedItem() {
         return producedItem;
     }
 
-    public void setProducedItemId(Item producedItem) {
+    public void setProducedItem(Item producedItem) {
         this.producedItem = producedItem;
     }
 
