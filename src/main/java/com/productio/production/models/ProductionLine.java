@@ -36,7 +36,7 @@ public class ProductionLine {
     @Column(name = "id", unique = true, updatable = false)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "produced_Item")
     private Item producedItem;
 

@@ -17,7 +17,8 @@ public class RedisConfig {
                                             @Qualifier("createItemAdapter") MessageListenerAdapter createItemAdapter,
                                             @Qualifier("createBlueprintAdapter") MessageListenerAdapter createBlueprintAdapter,
                                             @Qualifier("createProductionLineAdapter") MessageListenerAdapter createProductionLineAdapter,
-                                            @Qualifier("updateProductionLineAdapter") MessageListenerAdapter updateProductionLineAdapter){
+                                            @Qualifier("updateProductionLineAdapter") MessageListenerAdapter updateProductionLineAdapter,
+                                            @Qualifier("deleteProductionLineAdapter") MessageListenerAdapter deleteProductionLineAdapter){
 
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -25,6 +26,8 @@ public class RedisConfig {
         container.addMessageListener(createBlueprintAdapter, new PatternTopic("createBlueprint"));
         container.addMessageListener(createProductionLineAdapter, new PatternTopic("createProductionLine"));
         container.addMessageListener(updateProductionLineAdapter, new PatternTopic("updateProductionLine"));
+        container.addMessageListener(deleteProductionLineAdapter, new PatternTopic("deleteProductionLine"));
+
         return container;
     }
 
@@ -46,6 +49,11 @@ public class RedisConfig {
     @Bean("updateProductionLineAdapter")
     MessageListenerAdapter updateProductionLineAdapter(RedisReceiver redisReceiver) {
         return new MessageListenerAdapter(redisReceiver, "updateProductionLine");
+    }
+
+    @Bean("deleteProductionLineAdapter")
+    MessageListenerAdapter deleteProductionLineAdapter(RedisReceiver redisReceiver) {
+        return new MessageListenerAdapter(redisReceiver, "deleteProductionLine");
     }
 
     @Bean
